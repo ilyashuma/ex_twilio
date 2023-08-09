@@ -7,17 +7,21 @@ defmodule ExTwilio.Lookup do
   alias ExTwilio.{Parser, Config}
   alias ExTwilio.UrlGenerator, as: Url
 
-  @base_url "https://lookups.twilio.com/v1/PhoneNumbers/"
+  @base_url "https://lookups.twilio.com/v2/PhoneNumbers/"
 
   defmodule PhoneNumber do
     @moduledoc false
     defstruct url: nil,
-              carrier: nil,
+              line_type_intelligence: nil,
+              fields: nil,
               caller_name: nil,
               national_format: nil,
               phone_number: nil,
               country_code: nil,
-              add_ons: nil
+              add_ons: nil,
+              valid: nil,
+              calling_country_code: nil,
+              validation_errors: nil
   end
 
   @doc """
@@ -25,7 +29,7 @@ defmodule ExTwilio.Lookup do
 
   ## Examples
 
-      {:ok, info} = ExTwilio.Lookup.retrieve("12345678910", [Type: carrier])
+      {:ok, info} = ExTwilio.Lookup.retrieve("12345678910", [Fields: carrier])
 
   """
   def retrieve(phone_number, query \\ []) do
