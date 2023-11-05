@@ -5,22 +5,22 @@ defmodule ExTwilio.Verify do
 
   @base_url "https://verify.twilio.com/v2/"
 
-  def send(service_sid, phone_number) do
+  def send(service_sid, to, channel \\ "sms") do
     url = @base_url <> "Services/#{service_sid}/Verifications"
 
     payload = %{
-      "to" => phone_number,
-      "channel" => "sms"
+      "to" => to,
+      "channel" => channel
     }
 
     call(url, payload)
   end
 
-  def verify(service_sid, phone_number, code) do
+  def verify(service_sid, to, code) do
     url = @base_url <> "Services/#{service_sid}/VerificationCheck"
 
     payload = %{
-      "to" => phone_number,
+      "to" => to,
       "code" => code
     }
 
