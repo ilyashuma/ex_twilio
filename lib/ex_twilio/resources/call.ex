@@ -22,7 +22,8 @@ defmodule ExTwilio.Call do
             answered_by: nil,
             forwarded_from: nil,
             caller_name: nil,
-            uri: nil
+            uri: nil,
+            twiml: nil
 
   use ExTwilio.Resource,
     import: [
